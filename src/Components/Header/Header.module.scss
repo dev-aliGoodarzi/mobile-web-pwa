@@ -1,0 +1,29 @@
+.headerContainer {
+  width: 95%;
+  height: 5vh;
+  top: 1vh;
+  left: 2.5%;
+  input {
+    width: 70%;
+    height: 100%;
+    transition: 0.3s ease all;
+    background: transparent;
+
+    box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.2);
+    -webkit-transition: 0.3s ease all;
+    -moz-transition: 0.3s ease all;
+    -ms-transition: 0.3s ease all;
+    -o-transition: 0.3s ease all;
+    padding: {
+      right: 1rem;
+    }
+    outline: none;
+    &:focus {
+      border: 1px solid magenta;
+    }
+    &::placeholder {
+      color: rgb(166, 33, 196);
+      text-align: right;
+    }
+  }
+}

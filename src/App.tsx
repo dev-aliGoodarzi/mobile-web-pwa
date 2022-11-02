@@ -9,6 +9,7 @@ import styles from "./App.module.css";
 // CSS
 // Components
 import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Setting from "./Components/Setting/Setting";
@@ -19,7 +20,8 @@ const App = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
   return (
     <div>
-      <div
+      <Header />
+      <main
         className={`${styles.masterAppContainer}
                       flex flex-col items-center justify-start
                   `}
@@ -30,7 +32,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/setting" element={<Setting />} />
         </Routes>
-      </div>
+      </main>
       <Footer isUserLoggedIn={isUserLoggedIn} />
     </div>
   );
