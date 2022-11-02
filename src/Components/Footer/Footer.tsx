@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 // React
 // CSS
 import styles from "./Footer.module.css";
@@ -22,31 +22,56 @@ type FooterProps = {
   isUserLoggedIn: boolean;
 };
 const Footer: React.FunctionComponent<FooterProps> = ({ isUserLoggedIn }) => {
-  const footerData: I_FooterData[] = [
+  const footerInitialState: I_FooterData[] = [
     {
       Icon: <AiFillHome />,
       nameForShow: "خانه",
-      routeForRedirect: "/home",
+      routeForRedirect: "/",
+      isSelected: true,
     },
     {
       Icon: <AiOutlineSetting />,
       nameForShow: "تنظیمات",
       routeForRedirect: "/setting",
+      isSelected: false,
     },
     {
       Icon: <CgProfile />,
       nameForShow: "پروفایل",
       routeForRedirect: "/profile",
+      isSelected: false,
     },
   ];
+  const [footerItems, setFooterItems] =
+    useState<I_FooterData[]>(footerInitialState);
+
+  const colorChangerHandler = (e: React.MouseEvent<HTMLElement>): void => {
+    const elId = e.currentTarget.id;
+    const copyOfState: I_FooterData[] = [...footerItems];
+    const selectedIndex = copyOfState.findIndex(
+      (item) => item.routeForRedirect === elId
+    );
+    copyOfState.forEach((item) => (item.isSelected = false));
+    copyOfState[selectedIndex].isSelected = true;
+    setFooterItems(copyOfState);
+    return;
+  };
   return (
     <div
       className={`${styles.footerContainer} flex flex-row items-center justify-between fixed bottom-0 px-10 rounded-3xl`}
     >
-      {footerData.map((item) => (
+      {footerItems.map((item) => (
         <Link
           to={item.routeForRedirect}
+          key={item.routeForRedirect}
           className="flex flex-col items-center justify-center"
+          id={item.routeForRedirect}
+          style={{
+            color: item.isSelected ? "#a621c4" : "rgba(0,0,0,1)",
+          }}
+          onClick={(e) => {
+            colorChangerHandler(e);
+          }}
         >
           {item.Icon}
           <span>{item.nameForShow}</span>
