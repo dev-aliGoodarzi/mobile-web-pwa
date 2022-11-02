@@ -18,6 +18,7 @@ import Home from "./Containers/Home/Home";
 
 const App = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+  const [themeColor, setThemeColor] = useState<string>("rgb(166, 33 , 196)");
   return (
     <div>
       <Header />
@@ -30,10 +31,18 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/setting" element={<Setting />} />
+          <Route
+            path="/setting"
+            element={
+              <Setting
+                currentTheme={themeColor}
+                setThemeColor={setThemeColor}
+              />
+            }
+          />
         </Routes>
       </main>
-      <Footer isUserLoggedIn={isUserLoggedIn} />
+      <Footer isUserLoggedIn={isUserLoggedIn} themeColor={themeColor} />
     </div>
   );
 };

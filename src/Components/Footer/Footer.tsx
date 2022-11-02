@@ -20,8 +20,12 @@ import { I_FooterData } from "../../Models/interfaces";
 
 type FooterProps = {
   isUserLoggedIn: boolean;
+  themeColor: string;
 };
-const Footer: React.FunctionComponent<FooterProps> = ({ isUserLoggedIn }) => {
+const Footer: React.FunctionComponent<FooterProps> = ({
+  isUserLoggedIn,
+  themeColor,
+}) => {
   const footerInitialState: I_FooterData[] = [
     {
       Icon: <AiFillHome />,
@@ -67,7 +71,7 @@ const Footer: React.FunctionComponent<FooterProps> = ({ isUserLoggedIn }) => {
           className="flex flex-col items-center justify-center"
           id={item.routeForRedirect}
           style={{
-            color: item.isSelected ? "#a621c4" : "rgba(0,0,0,1)",
+            color: item.isSelected ? themeColor : "rgba(0,0,0,1)",
           }}
           onClick={(e) => {
             colorChangerHandler(e);

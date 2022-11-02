@@ -4,3 +4,8 @@ export interface I_FooterData {
   routeForRedirect: string;
   isSelected: boolean;
 }
+
+export interface I_Colors {
+  colorCode: string;
+  id: string;
+}
