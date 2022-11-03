@@ -1,33 +1,48 @@
 .settingContainer {
   width: 95%;
 }
+
 .settingContainer .customInput {
   width: 90%;
-  box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.2);
 }
-.settingContainer .customInput::-moz-placeholder {
+
+.settingContainer .customInput::-webkit-input-placeholder {
   text-align: center;
 }
+
 .settingContainer .customInput:-ms-input-placeholder {
   text-align: center;
 }
+
+.settingContainer .customInput::-ms-input-placeholder {
+  text-align: center;
+}
+
 .settingContainer .customInput::placeholder {
   text-align: center;
 }
+
 .settingContainer .themeColorSection .colorsContainer {
   width: 70%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 1rem;
   position: relative;
   margin-top: 2vh;
 }
+
 .settingContainer .themeColorSection .colorsContainer .colorItem {
   width: 28px;
   height: 28px;
   margin-left: 1.5rem;
   border-radius: 50%;
 }
+
 .settingContainer .fontController {
   width: 100%;
-}/*# sourceMappingURL=Setting.module.css.map */
+}
+/*# sourceMappingURL=Setting.module.css.map */
