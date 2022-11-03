@@ -21,10 +21,12 @@ import { I_FooterData } from "../../Models/interfaces";
 type FooterProps = {
   isUserLoggedIn: boolean;
   themeColor: string;
+  isNightMode: boolean;
 };
 const Footer: React.FunctionComponent<FooterProps> = ({
   isUserLoggedIn,
   themeColor,
+  isNightMode,
 }) => {
   const footerInitialState: I_FooterData[] = [
     {
@@ -40,9 +42,9 @@ const Footer: React.FunctionComponent<FooterProps> = ({
       isSelected: false,
     },
     {
-      Icon: <CgProfile />,
-      nameForShow: "پروفایل",
-      routeForRedirect: "/profile",
+      Icon: <AiOutlineShoppingCart />,
+      nameForShow: "سبد خرید",
+      routeForRedirect: "/cart-items",
       isSelected: false,
     },
   ];
@@ -62,7 +64,11 @@ const Footer: React.FunctionComponent<FooterProps> = ({
   };
   return (
     <div
-      className={`${styles.footerContainer} flex flex-row items-center justify-between fixed bottom-0 px-10 rounded-3xl`}
+      className={`${
+        styles.footerContainer
+      } flex flex-row items-center justify-between fixed bottom-0 px-10 rounded-3xl ${
+        isNightMode ? styles.nightMode : ""
+      }`}
     >
       {footerItems.map((item) => (
         <Link
@@ -71,7 +77,13 @@ const Footer: React.FunctionComponent<FooterProps> = ({
           className="flex flex-col items-center justify-center"
           id={item.routeForRedirect}
           style={{
-            color: item.isSelected ? themeColor : "rgba(0,0,0,1)",
+            color: !isNightMode
+              ? item.isSelected
+                ? themeColor
+                : "rgba(0,0,0,1)"
+              : item.isSelected
+              ? themeColor
+              : "rgba(255,255,255,0.8)",
           }}
           onClick={(e) => {
             colorChangerHandler(e);
@@ -82,9 +94,12 @@ const Footer: React.FunctionComponent<FooterProps> = ({
         </Link>
       ))}
       {isUserLoggedIn ? (
-        <Link to="/cart" className="flex flex-col items-center justify-center">
-          <AiOutlineShoppingCart />
-          <span>سب خرید</span>
+        <Link
+          to="/profile"
+          className="flex flex-col items-center justify-center"
+        >
+          <CgProfile />
+          <span>پروفایل</span>
         </Link>
       ) : (
         <Link to="/login" className="flex flex-col items-center justify-center">

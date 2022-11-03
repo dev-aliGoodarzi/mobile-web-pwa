@@ -1,4 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html > body > #root .nightMode {
+  color-scheme: dark !important;
+}
+
+html.nightMode {
+  background-color: #282828;
+}
 /*# sourceMappingURL=index.css.map */

@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // React
 // Modules
 import { Routes, Route } from "react-router-dom";
@@ -17,10 +17,31 @@ import Home from "./Containers/Home/Home";
 // Components
 
 const App = () => {
+  // **********************************
+  // States
+  // **********************************
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+  const [isNightMode, setIsNightMode] = useState<boolean>(false);
   const [themeColor, setThemeColor] = useState<string>("rgb(166, 33 , 196)");
+  // **********************************
+  // States
+  // **********************************
+  // **********************************
+  // LifeCycles
+  // **********************************
+  // for change Color Of HTML TAG
+  useEffect(() => {
+    document.getElementsByTagName("html")[0].classList.toggle("nightMode");
+  }, [isNightMode]);
+  // for change Color Of HTML TAG
+  // **********************************
+  // LifeCycles
+  // **********************************
+  // **********************************
+
+  // **********************************
   return (
-    <div>
+    <div className={isNightMode ? "nightMode" : ""}>
       <Header />
       <main
         className={`${styles.masterAppContainer}
@@ -37,12 +58,18 @@ const App = () => {
               <Setting
                 currentTheme={themeColor}
                 setThemeColor={setThemeColor}
+                isNightMode={isNightMode}
+                setNightMode={setIsNightMode}
               />
             }
           />
         </Routes>
       </main>
-      <Footer isUserLoggedIn={isUserLoggedIn} themeColor={themeColor} />
+      <Footer
+        isUserLoggedIn={isUserLoggedIn}
+        themeColor={themeColor}
+        isNightMode={isNightMode}
+      />
     </div>
   );
 };

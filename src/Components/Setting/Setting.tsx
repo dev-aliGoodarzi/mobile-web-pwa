@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 // React
 // CSS
 import styles from "./Setting.module.css";
@@ -12,13 +12,17 @@ import Hr from "../Hr/Hr";
 type SettingProps = {
   setThemeColor: Function;
   currentTheme: string;
+  isNightMode: boolean;
+  setNightMode: Function;
 };
 
 const Setting: React.FunctionComponent<SettingProps> = ({
   currentTheme,
   setThemeColor,
+  isNightMode,
+  setNightMode,
 }) => {
-  const [selected, setSelected] = React.useState(false);
+  const [selected, setSelected] = useState(isNightMode);
   const colors: I_Colors[] = [
     {
       id: "c-1",
@@ -55,7 +59,11 @@ const Setting: React.FunctionComponent<SettingProps> = ({
   ];
 
   return (
-    <div className={`${styles.settingContainer} flex flex-col items-center`}>
+    <div
+      className={`${styles.settingContainer} flex flex-col items-center ${
+        isNightMode ? styles.nightMode : ""
+      }`}
+    >
       <Hr text="Theme Setting" className="mb-2" />
       <section
         className={`${styles.themeColorSection} w-full flex flex-col items-center justify-between`}
@@ -106,7 +114,8 @@ const Setting: React.FunctionComponent<SettingProps> = ({
             className="sr-only peer"
             checked={selected ? true : false}
             onClick={() => {
-              setSelected((prevState) => !prevState);
+              setSelected((prevState: boolean) => !prevState);
+              setNightMode((prevState: boolean) => !prevState);
             }}
             onChange={() => {}}
           />

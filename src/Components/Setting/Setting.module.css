@@ -1,5 +1,6 @@
 .settingContainer {
   width: 95%;
+  height: 83vh;
 }
 
 .settingContainer .customInput {
@@ -44,5 +45,20 @@
 
 .settingContainer .fontController {
   width: 100%;
+}
+
+.nightMode {
+  background: #282828;
+  -webkit-transition: 0.4s ease all;
+  transition: 0.4s ease all;
+}
+
+.nightMode p,
+.nightMode span,
+.nightMode h1,
+.nightMode div {
+  -webkit-transition: 0.4s ease all;
+  transition: 0.4s ease all;
+  color: #fff;
 }
 /*# sourceMappingURL=Setting.module.css.map */
